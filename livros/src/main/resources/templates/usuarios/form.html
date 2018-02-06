@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+	<title>Formulário Usuário</title>
+	
+	<link href="/css/bootstrap.min.css" rel="stylesheet" ></link>
+    <link href="/css/jumbotron.css" rel="stylesheet" ></link>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="/">Biblioteca</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/livros/list">Livros </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/usuarios/list">Autores</a>
+          </li>
+          <li class="nav-item">
+					<a class="nav-link" href="/usuarios/list">Usuários</a>
+				</li>
+          <li class="nav-item active dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Novo</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="/livros/novo">Livro</a>
+              <a class="dropdown-item" href="/usuarios/novo">Autor</a>
+              <a class="dropdown-item active" href="/usuarios/novo">Usuário</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main role="main">
+    <div class="container">
+    	<h1 class="text-center"> Formulário Usuário </h1>
+    </div>
+    <div class="container">
+	<form id="livroForm" th:action="@{/usuarios/(form)}" method="post" enctype="multipart/form-data" th:object="${usuario}" action="#" >
+		<input type="hidden"  th:field="*{id}" />		
+		<div class="input-group mb-3">
+  			<div class="input-group-prepend">
+    			<span class="input-group-text" id="basic-addon1" style="width:150px;text-align:right">Nome de Usuário:</span>
+  			</div>
+  			<input type="text" class="form-control" placeholder="username" aria-label="username" aria-describedby="basic-addon1" th:field="*{username}" />  			
+		</div>
+		<div th:if="${#fields.hasErrors('username')}" class="alert alert-danger" role="alert">
+  			<span th:errors="*{username}">username Error</span>
+		</div>
+		
+		<div class="input-group mb-3">
+  			<div class="input-group-prepend">
+    			<span class="input-group-text" id="basic-addon1" style="width:150px;text-align:right">Senha:</span>
+  			</div>
+  			<input type="text" class="form-control" placeholder="passsword" aria-label="passsword" aria-describedby="basic-addon1" th:field="*{passsword}" />  			
+		</div>
+		<div th:if="${#fields.hasErrors('passsword')}" class="alert alert-danger" role="alert">
+  			<span th:errors="*{passsword}">Nome Error</span>
+		</div>
+  		<br />
+		<input type="submit" class="btn btn-outline-secondary btn-lg btn-block" value="Gravar" />
+	</form>
+	</div>
+	</main>
+	
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="/js/vendor/jquery-slim.min.js"></script>
+    <script src="/js/vendor/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

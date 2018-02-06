@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+	<title>Lista dos Autores</title>
+	
+	<link href="/css/bootstrap.min.css" rel="stylesheet" ></link>
+    <link href="/css/jumbotron.css" rel="stylesheet" ></link>
+</head>
+<body>
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="/">Biblioteca</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/livros/list">Livros </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/autores/list">Autores</a>
+          </li>
+          <li class="nav-item">
+					<a class="nav-link" href="/usuarios/list">Usuários</a>
+				</li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Novo</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="/livros/novo">Livro</a>
+              <a class="dropdown-item" href="/autores/novo">Autor</a>
+              <a class="dropdown-item" href="/usuarios/novo">Usuário</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <main role="main">
+       <div class="container">
+       <br/>
+       	<h1 class="text-center">Lista de Autores</h1>
+       	<br/>
+       </div>
+    <div class="container">
+	<table class="table table-hover">
+		<tr>
+			<th>ID</th>
+			<th>Nome</th>
+			<th colspan="2">Ações</th>
+		</tr>
+		<tr th:if="${autores.empty}">
+			<td colspan="4">Sem Autores</td>
+		</tr>
+		<tr th:each="autor : ${autores}">
+			<td th:text="${autor.id}">1</td>
+			<td>
+				<a href="#" th:href="@{'/autores/'+${autor.id}}" th:text="${autor.nome}">Nome</a>
+			</td>
+			<td>
+				<a href="#" th:href="@{'/autores/alterar/'+${autor.id}}">Altera</a>
+			</td>				
+			<td>
+				<a href="#" th:href="@{'/autores/excluir/'+${autor.id}}">Excluir</a>
+			</td>
+		</tr>
+	</table>
+	</div>
+	</main>
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="/js/vendor/jquery-slim.min.js"></script>
+    <script src="/js/vendor/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+  </body>
+</html>
